@@ -1,0 +1,203 @@
+@import "../../variables"
+
+.wrapper
+  width: 100%
+  height: 688px
+  background-position: center
+  background-size: cover
+  background-image: url(../../assets/images/1200.png)
+  display: flex
+  flex-direction: column
+  align-items: center
+  position: relative
+  .popup
+    position: fixed
+    top: 0px
+    left: 0px
+    width: 100vw
+    height: 100vh
+    background-color: rgba(0,0,0,0.75)
+    z-index: 999
+    display: flex
+    align-items: center
+    justify-content: center
+    opacity: 0
+    pointer-events: none
+    transition-duration: 0.35s
+    &.active
+      opacity: 1
+      pointer-events: all
+    .inner
+      background-color: $white
+      width: 50vw
+      height: 50vh
+      overflow-y: scroll
+      overflow-x: hidden
+      border-radius: 5px
+      position: relative
+      padding: 25px
+      .close
+        position: absolute
+        top: 10px
+        right: 10px
+        width: 20px
+        cursor: pointer
+      .text
+        font-size: 14px
+        line-height: 21px
+        letter-spacing: 0.25px
+  .blure
+    position: absolute
+    width: 100%
+    height: 100%
+    pointer-events: none
+    background-color: rgba(255,255,255,0.375)
+    z-index: 1
+  *
+    z-index: 2
+  h2
+    color: $text-white
+    font-size: 35px
+    margin-top: 75px
+    margin-bottom: 57px
+    font-weight: 400
+  .search
+    width: 850px
+    display: flex
+    flex-direction: column
+    align-items: center
+    h3
+      color: $white
+      font-size: 28px
+      line-height: 34px
+      text-align: left
+      margin-bottom: 40px
+    &-box
+      background-color: $blue
+      height: 280px
+      width: 100%
+      border-top-left-radius: 50px
+      display: flex
+      justify-content: center
+      align-items: flex-start
+      padding-top: 45px
+      padding-left: 35px
+      padding-right: 35px
+      .destination
+        width: 320px
+        margin-right: 45px
+        .input-wrapper
+          position: relative
+          display: flex
+          align-items: center
+          label
+            font-size: 14px
+            color: $text-black
+            text-transform: uppercase
+            position: absolute
+            z-index: 3
+            margin-left: 11px
+            pointer-events: none
+          input
+            width: 320px
+            height: 45px
+            border: 1px solid $darkblue
+            background-color: $white
+            padding-left: 60px
+            display: flex
+            align-items: center
+            font-size: 10px
+            font-weight: bold
+            color: $text-black
+            cursor: pointer
+        .exchange-values
+          width: 100%
+          display: flex
+          justify-content: flex-end
+          align-items: center
+          margin: 9px 0px
+          div
+            background-color: #00466f
+            width: 22px
+            height: 22px
+            display: flex
+            align-items: center
+            justify-content: center
+            border-radius: 50px
+            cursor: pointer
+            transition-duration: 0.3s
+            &:hover
+              opacity: 0.85
+      .shipment
+        width: 370px
+        &-settings
+          display: flex
+          flex-direction: column
+          .type
+            display: flex
+            align-items: center
+            margin-bottom: 8px
+            &-item
+              margin-right: 33px
+              display: flex
+              align-items: center
+              cursor: pointer
+              &.active
+                p
+                  color: $lightblue
+              &:last-child
+                margin-right: 0px
+              .parcel-img
+                display: flex
+                flex-direction: column
+                align-items: center
+                div.top
+                  width: 20px
+                  height: 3px
+                  background-color: $text-white
+                  margin-bottom: 4px
+                div.bottom
+                  width: 26px
+                  height: 6px
+                  background-color: $white
+              p
+                font-size: 14px
+                color: $text-white
+                font-weight: bold
+                margin-left: 5px
+          .info
+            display: flex
+            input
+              margin-right: 10px
+              width: 66px
+              height: 21px
+              background-color: $white
+              border-radius: 5px
+              padding: 5px
+              border: 1px solid $darkblue
+              font-size: 8px
+              font-weight: bold
+              color: $text-black
+              &:last-child
+                margin-right: 0px
+          .buttons
+    &-btn
+      color: $white
+      background-color: $pink
+      height: 65px
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+      cursor: pointer
+      transition-duration: 0.35s
+      border-bottom-right-radius: 50px
+      &:hover
+        opacity: 0.85
+      p
+        margin-right: 5px
+        font-size: 24px
+        font-weight: bold
+
+
+

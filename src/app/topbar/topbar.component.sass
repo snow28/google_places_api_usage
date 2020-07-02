@@ -1,0 +1,127 @@
+@import "../../variables"
+
+.topbar
+  width: 100%
+  height: 111px
+  display: flex
+  align-items: center
+  justify-content: center
+  background-color: $white
+  .navigation
+    display: flex
+    align-items: center
+    margin-right: 28px
+    .lang-selector
+      display: flex
+      align-items: center
+      cursor: pointer
+      margin-right: 10px
+      margin-left: 15px
+      transition-duration: 0.3s
+      &:hover
+        opacity: 0.85
+      span.arrow
+        background-color: $text-black
+        width: 9px
+        height: 9px
+        display: flex
+        clip-path: polygon(0 0%, 100% 0, 100% 100%, 0 0%)
+        transform: rotate(135deg)
+        margin-left: 5px
+        position: relative
+        top: -2px
+    .currency-selector
+      display: flex
+      align-items: center
+      background-color: #F0EFEF
+      width: 66px
+      height: 22px
+      padding: 7px
+      border-radius: 7px
+      cursor: pointer
+      transition-duration: 0.3s
+      margin-right: 20px
+      &:hover
+        opacity: 0.85
+      p.value
+        font-weight: 600
+        font-size: 12px
+        color: #939393
+      span.arrow
+        background-color: $text-black
+        width: 9px
+        height: 9px
+        display: flex
+        clip-path: polygon(0 0%, 100% 0, 100% 100%, 0 0%)
+        transform: rotate(135deg)
+        margin-left: 5px
+        position: relative
+        top: -2px
+    ul
+      display: flex
+      align-items: center
+      li
+        margin-right: 50px
+        transition-duration: 0.3s
+        border-bottom: 1px solid transparent
+        &:hover
+          border-bottom: 1px solid $text-black
+        &:last-child
+          margin-right: 0px
+        a
+          color: $text-black
+          font-size: 16px
+          line-height: 19px
+          text-decoration: none
+  .search
+    position: relative
+    display: flex
+    align-items: center
+    justify-content: center
+    input
+      width: 263px
+      height: 34px
+      border: 1px solid $pink
+      border-radius: 5px
+      padding: 5px
+      display: flex
+      align-items: center
+      background-image: url(../../assets/images/icons/search-ico.png)
+      background-position-x: calc( 100% - 10px )
+      background-position-y: center
+      cursor: pointer
+      padding-right: 86px
+      font-weight: 600
+      color: $text-black
+      &::placeholder
+        font-weight: 400
+    &-selector
+      position: absolute
+      cursor: pointer
+      right: 47px
+      &-label
+        display: flex
+        align-items: center
+        p
+          color: $text-black
+          font-size: 10px
+          font-weight: bold
+        span.arrow
+          background-color: $text-black
+          width: 9px
+          height: 9px
+          display: flex
+          clip-path: polygon(0 0%, 100% 0, 100% 100%, 0 0%)
+          transform: rotate(135deg)
+          margin-left: 5px
+          position: relative
+          top: -3px
+
+    .sign-in
+      position: absolute
+      top: 36px
+      left: 0px
+      a
+        font-size: 12px
+        font-weight: bold
+        color: $text-black

@@ -1,0 +1,80 @@
+<div class="wrapper">
+  <div class="blure"></div>
+  <h2>The easiest way to deliver your package</h2>
+  <div class="search">
+    <div class="search-box">
+      <div class="destination">
+        <h3>Destination</h3>
+        <div class="input-wrapper">
+          <label>FROM</label>
+          <input
+            type="text"
+            placeholder="Address, City, Country"
+            ngx-google-places-autocomplete
+            [options]='options'
+            #placesRef="ngx-places"
+            (onAddressChange)="handleAddressChangeFrom($event)"
+          >
+        </div>
+        <div class="exchange-values">
+          <div>
+            <img src="/assets/images/icons/switch-arrows-ico.png">
+          </div>
+        </div>
+        <div class="input-wrapper">
+          <label>TO</label>
+          <input
+            type="text"
+            placeholder="Address, City, Country"
+            ngx-google-places-autocomplete
+            [options]='options'
+            #placesRef="ngx-places"
+            (onAddressChange)="handleAddressChangeTo($event)"
+          >
+        </div>
+      </div>
+      <div class="shipment">
+        <h3>Shipment</h3>
+        <div class="shipment-settings">
+          <div class="type">
+            <div class="type-item" [class.active]="activeShipmentItemType === 1" (click)="activeShipmentItemType = 1">
+              <img src="/assets/images/icons/parcel-ico.png">
+              <p>Parcel</p>
+            </div>
+            <div class="type-item" [class.active]="activeShipmentItemType === 2" (click)="activeShipmentItemType = 2">
+              <img src="/assets/images/icons/envelope-ico.png">
+              <p>Envelope</p>
+            </div>
+            <div class="type-item" [class.active]="activeShipmentItemType === 3" (click)="activeShipmentItemType = 3">
+              <div class="parcel-img">
+                <div class="top"></div>
+                <div class="bottom"></div>
+              </div>
+              <p>Pallet</p>
+            </div>
+          </div>
+          <div class="info">
+            <input type="text" placeholder="Qty" [(ngModel)]="qtyValue">
+            <input type="text" placeholder="Weight (kg)" [(ngModel)]="weightValue">
+            <input type="text" placeholder="Length (cm)" [(ngModel)]="lengthValue">
+            <input type="text" placeholder="Width (cm)" [(ngModel)]="widthValue">
+            <input type="text" placeholder="Height (cm)" [(ngModel)]="heightValue">
+          </div>
+          <div class="buttons"></div>
+        </div>
+      </div>
+    </div>
+    <div class="search-btn" (click)="sendParcel()">
+      <p>Send My Parcel!</p>
+      <img src="/assets/images/icons/paperplane-ico.png">
+    </div>
+  </div>
+  <div class="popup" [class.active]="showDataPopup">
+    <div class="inner">
+      <img (click)="showDataPopup = false" class="close" src="/assets/images/icons/close.svg">
+      <div class="text">
+        <pre>{{ dataResponse | json }}</pre>
+      </div>
+    </div>
+  </div>
+</div>
