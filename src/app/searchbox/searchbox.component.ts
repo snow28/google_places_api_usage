@@ -49,78 +49,99 @@ export class SearchboxComponent implements OnInit {
 
   public sendParcel() {
     let error = false;
-    let requestObject = {
-      "action": "CompareRates",
-      "shippingTypeId": 2,
-      "courierId": 2,
-      "unitOfMeasurement": "cm_kg",
-      "Shipper": {
-        "country": "",
-        "state": "",
-        "city": "",
-        "street": "",
-        "postalCode": ""
-      },
-      "Recipient": {
-        "country": "",
-        "state": "",
-        "city": "",
-        "street": "",
-        "postalCode": ""
-      },
-      "Packages": [
-        {
-          "quantity": this.qtyValue,
-          "weight": this.weightValue,
-          "height": this.heightValue,
-          "length": this.lengthValue,
-          "width": this.widthValue,
-          "description": "what ever"
-        }
-      ],
-      "EstimatedDeliveryDate": {
-        "pickupDate": "",
-        "pickupTime": "",
-        "deliveryDate" : "",
-        "deliveryTime": ""
-      }
-    };
-    if (this.inputAddressFrom !== undefined) {
-      this.inputAddressFrom.address_components.forEach(item => {
-        if (item.types[0] === 'country') {
-          requestObject.Shipper.country = item.short_name;
-        }
-        if (item.types[0] === 'locality') {
-          requestObject.Shipper.city = item.long_name;
-        }
-        if (item.types[0] === 'route') {
-          requestObject.Shipper.street = item.long_name;
-        }
-        if (item.types[0] === 'postal_code') {
-          requestObject.Shipper.postalCode = item.long_name;
-        }
-      });
-    } else {
+    let alertMessage = undefined;
+    if (this.qtyValue === undefined){
+      alertMessage = 'Select Quantity!';
       error = true;
+    } else if (this.weightValue === undefined) {
+      alertMessage = 'Select weight of parcel!';
+      error = true;
+    } else if (this.heightValue === undefined) {
+      alertMessage = 'Select height of parcel!';
+      error = true;
+    } else if (this.lengthValue === undefined) {
+      alertMessage = 'Select length of parcel!';
+      error = true;
+    } else if (this.widthValue === undefined) {
+      error = true;
+      alertMessage = 'Select width of parcel!';
     }
-
-    if (this.inputAddressTo !== undefined) {
-      this.inputAddressTo.address_components.forEach(item => {
-        if (item.types[0] === 'country') {
-          requestObject.Recipient.country = item.short_name;
+    let requestObject;
+    if (!error) {
+      requestObject = {
+        "action": "CompareRates",
+        "shippingTypeId": 2,
+        "courierId": 2,
+        "unitOfMeasurement": "cm_kg",
+        "Shipper": {
+          "country": "",
+          "state": "",
+          "city": "",
+          "street": "",
+          "postalCode": ""
+        },
+        "Recipient": {
+          "country": "",
+          "state": "",
+          "city": "",
+          "street": "",
+          "postalCode": ""
+        },
+        "Packages": [
+          {
+            "quantity": this.qtyValue,
+            "weight": this.weightValue,
+            "height": this.heightValue,
+            "length": this.lengthValue,
+            "width": this.widthValue,
+            "description": "what ever"
+          }
+        ],
+        "EstimatedDeliveryDate": {
+          "pickupDate": "",
+          "pickupTime": "",
+          "deliveryDate" : "",
+          "deliveryTime": ""
         }
-        if (item.types[0] === 'locality') {
-          requestObject.Recipient.city = item.long_name;
-        }
-        if (item.types[0] === 'route') {
-          requestObject.Recipient.street = item.long_name;
-        }
-        if (item.types[0] === 'postal_code') {
-          requestObject.Recipient.postalCode = item.long_name;
-        }
-      });
-    } else {
-      error = true;
+      };
+      if (this.inputAddressFrom !== undefined) {
+        this.inputAddressFrom.address_components.forEach(item => {
+          if (item.types[0] === 'country') {
+            requestObject.Shipper.country = item.short_name;
+          }
+          if (item.types[0] === 'locality') {
+            requestObject.Shipper.city = item.long_name;
+          }
+          if (item.types[0] === 'route') {
+            requestObject.Shipper.street = item.long_name;
+          }
+          if (item.types[0] === 'postal_code') {
+            requestObject.Shipper.postalCode = item.long_name;
+          }
+        });
+      } else {
+        error = true;
+        alertMessage = 'Select FROM where you want to send a parcel!';
+      }
+      if (this.inputAddressTo !== undefined) {
+        this.inputAddressTo.address_components.forEach(item => {
+          if (item.types[0] === 'country') {
+            requestObject.Recipient.country = item.short_name;
+          }
+          if (item.types[0] === 'locality') {
+            requestObject.Recipient.city = item.long_name;
+          }
+          if (item.types[0] === 'route') {
+            requestObject.Recipient.street = item.long_name;
+          }
+          if (item.types[0] === 'postal_code') {
+            requestObject.Recipient.postalCode = item.long_name;
+          }
+        });
+      } else if (!error){
+        error = true;
+        alertMessage = 'Select WHERE you want to send parcel!';
+      }
     }
     console.log(requestObject);
     if (!error) {
@@ -131,7 +152,11 @@ export class SearchboxComponent implements OnInit {
         this.htmlDataResponse = JSON.stringify(value, null, 4);
       });
     } else {
-      alert("Error found, check console!");
+      if (alertMessage === undefined) {
+        alert("Error found, check console!");
+      } else {
+        alert(alertMessage);
+      }
     }
   }
 
