@@ -143,10 +143,8 @@ export class SearchboxComponent implements OnInit {
         alertMessage = 'Select WHERE you want to send parcel!';
       }
     }
-    console.log(requestObject);
     if (!error) {
       this.http.post<void>(this.API_URL, requestObject || {}).subscribe(( value: any ) => {
-        console.log(value);
         this.showDataPopup = true;
         this.dataResponse = value;
         this.htmlDataResponse = JSON.stringify(value, null, 4);
