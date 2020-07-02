@@ -48,6 +48,7 @@ export class SearchboxComponent implements OnInit {
   }
 
   public sendParcel() {
+    let error = false;
     let requestObject = {
       "action": "CompareRates",
       "shippingTypeId": 2,
@@ -84,41 +85,54 @@ export class SearchboxComponent implements OnInit {
         "deliveryTime": ""
       }
     };
-    this.inputAddressFrom.address_components.forEach(item => {
-      if (item.types[0] === 'country') {
-        requestObject.Shipper.country = item.short_name;
-      }
-      if (item.types[0] === 'locality') {
-        requestObject.Shipper.city = item.long_name;
-      }
-      if (item.types[0] === 'route') {
-        requestObject.Shipper.street = item.long_name;
-      }
-      if (item.types[0] === 'postal_code') {
-        requestObject.Shipper.postalCode = item.long_name;
-      }
-    });
-    this.inputAddressTo.address_components.forEach(item => {
-      if (item.types[0] === 'country') {
-        requestObject.Recipient.country = item.short_name;
-      }
-      if (item.types[0] === 'locality') {
-        requestObject.Recipient.city = item.long_name;
-      }
-      if (item.types[0] === 'route') {
-        requestObject.Recipient.street = item.long_name;
-      }
-      if (item.types[0] === 'postal_code') {
-        requestObject.Recipient.postalCode = item.long_name;
-      }
-    });
+    if (this.inputAddressFrom !== undefined) {
+      this.inputAddressFrom.address_components.forEach(item => {
+        if (item.types[0] === 'country') {
+          requestObject.Shipper.country = item.short_name;
+        }
+        if (item.types[0] === 'locality') {
+          requestObject.Shipper.city = item.long_name;
+        }
+        if (item.types[0] === 'route') {
+          requestObject.Shipper.street = item.long_name;
+        }
+        if (item.types[0] === 'postal_code') {
+          requestObject.Shipper.postalCode = item.long_name;
+        }
+      });
+    } else {
+      error = true;
+    }
+
+    if (this.inputAddressTo !== undefined) {
+      this.inputAddressTo.address_components.forEach(item => {
+        if (item.types[0] === 'country') {
+          requestObject.Recipient.country = item.short_name;
+        }
+        if (item.types[0] === 'locality') {
+          requestObject.Recipient.city = item.long_name;
+        }
+        if (item.types[0] === 'route') {
+          requestObject.Recipient.street = item.long_name;
+        }
+        if (item.types[0] === 'postal_code') {
+          requestObject.Recipient.postalCode = item.long_name;
+        }
+      });
+    } else {
+      error = true;
+    }
     console.log(requestObject);
-    this.http.post<void>(this.API_URL, requestObject || {}).subscribe(( value: any ) => {
-      console.log(value);
-      this.showDataPopup = true;
-      this.dataResponse = value;
-      this.htmlDataResponse = JSON.stringify(value, null, 4);
-    });
+    if (!error) {
+      this.http.post<void>(this.API_URL, requestObject || {}).subscribe(( value: any ) => {
+        console.log(value);
+        this.showDataPopup = true;
+        this.dataResponse = value;
+        this.htmlDataResponse = JSON.stringify(value, null, 4);
+      });
+    } else {
+      alert("Error found, check console!");
+    }
   }
 
 
