@@ -13,6 +13,9 @@
     width: 100%
     text-align: center
     font-weight: 400
+    max-width: 90vw
+    @media (max-width: $mobile_breakpoint)
+      font-size: 15px
   .list
     width: 100%
     display: flex
@@ -26,3 +29,4 @@
       margin-bottom: 20px
       img
         margin: 0 17.5px
+        max-width: calc(24vw - 40px)

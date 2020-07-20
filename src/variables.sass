@@ -7,5 +7,34 @@ $blue: #0487D5
 $darkblue: #00466F
 $lightblue: #19D5EC
 
+$mobile_breakpoint: 1160px
+
+
 // fonts
 $main-font: 'Montserrat', sans-serif
+
+
+*
+  box-sizing: border-box
+  padding: 0px
+  margin: 0px
+  font-family: $main-font
+  outline: none
+  background-repeat: no-repeat
+  ::-webkit-scrollbar
+    width: 7px
+    height: 7px
+    background-color: white
+  ::-webkit-scrollbar-thumb
+    background: rgba(69, 90, 100, 0.5)
+    border-radius: 10px
+  ::-webkit-scrollbar-thumb:hover
+    background: #646665
+  &:focus,&:active,&:visited
+    outline: none
+    box-shadow: none
+
+li
+  list-style-type: none
+a
+  text-decoration: none

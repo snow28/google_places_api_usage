@@ -54,11 +54,22 @@
             </div>
           </div>
           <div class="info">
-            <input type="text" placeholder="Qty" [(ngModel)]="qtyValue">
-            <input type="text" placeholder="Weight (kg)" [(ngModel)]="weightValue">
-            <input type="text" placeholder="Length (cm)" [(ngModel)]="lengthValue">
-            <input type="text" placeholder="Width (cm)" [(ngModel)]="widthValue">
-            <input type="text" placeholder="Height (cm)" [(ngModel)]="heightValue">
+            <div class="input-wrapper">
+              <input type="text" placeholder="Qty" [(ngModel)]="qtyValue">
+            </div>
+            <div class="input-wrapper">
+              <input type="text" placeholder="Weight (kg)" [(ngModel)]="weightValue">
+              <span>KG</span>
+            </div>
+            <div class="input-wrapper">
+              <input type="text" placeholder="Length (cm)" [(ngModel)]="lengthValue">
+            </div>
+            <div class="input-wrapper">
+              <input type="text" placeholder="Width (cm)" [(ngModel)]="widthValue">
+            </div>
+            <div class="input-wrapper">
+              <input type="text" placeholder="Height (cm)" [(ngModel)]="heightValue">
+            </div>
           </div>
           <div class="buttons"></div>
         </div>
